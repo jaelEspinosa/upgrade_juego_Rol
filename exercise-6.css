@@ -1,0 +1,95 @@
+h1,h2{
+    text-align: center;
+    background-color: gray;
+    padding: 10px;
+    border-radius: 10px;
+}
+h2{
+    visibility: hidden;
+}
+button{
+    width: 150px;
+    padding:5px;
+    background-color: gray;
+    border-radius: 8px;
+    color:white;
+}   
+button:hover{
+    color:red;
+}
+.bisque{
+    color:bisque;
+}
+.btn-Selected{
+    color:red !important;
+    
+}
+.green{
+    color:green;
+}
+.orange{
+    border-bottom:5px solid orangered;
+    border-radius: 10px;
+    color:orangered;
+}
+.red{
+    border-bottom:5px solid red;
+    border-radius: 10px;
+    color:red;
+}
+
+
+.c-characters{
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 15px;
+    background-color: bisque;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+.c-characters__item{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+}
+img{
+    height: 380px;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 10px 10px 18px gray;
+    border:1px solid white;
+}
+.arena{
+    position:relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-image: url(public/images/1591278789_blackthorn-arena.jpg);
+    background-size: cover;
+}
+.marcador{
+    padding:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+    border:1px solid black;
+    width: 20%;
+    top:100px;
+    border-radius: 30px;
+    box-shadow: 10px 10px 18px gray;
+    background-color: bisque;
+}
+.big{
+    display: flex;
+    flex-direction: column;
+    gap:25px;
+    text-align: center;
+    font-size: 32px;
+    color:green;
+    border:5px solid green;
+    width: 400px;
+    height: 150px;
+}
