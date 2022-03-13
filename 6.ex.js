@@ -21,18 +21,19 @@ const random= (max,min)=>{
 }
 
 // peticion de datos a la api
-
-/* const getCarts = async () => {
+/* 
+const getCarts = async () => {
   const res = await fetch(url);
   const carts = await res.json();
   printCarts(carts);
-};
- */
+}; */
 
 
-//getCarts();
+
+/* getCarts(); */
 
 // pintamos todos los posibles luchadores 
+
 
 const printCarts = (carts) => {
   gamePlayer = 0;
@@ -78,7 +79,7 @@ const printCarts = (carts) => {
     });
   }
 };
-printCarts(carts.characters);
+printCarts(carts.characters); 
 // seleccionamos que jugador se añade a la arena y construimos el marcador
 
 function addCartToArena(param) {
@@ -122,8 +123,13 @@ function readyToArena(cart) {
   h5vitality$$.innerHTML = "VITALITY   : " + cart.vitality;
   h5vitality$$.setAttribute("value",cart.vitality)
   h5defense$$.innerHTML =  "DEFENSE    : " + cart.defense;
+  const tirada$$ = document.createElement('h4')
+  
 
   div$$.appendChild(h3name$$);
+  div$$.appendChild(tirada$$);
+  tirada$$.classList.add('tirada')
+  tirada$$.innerHTML='DADOS';
   div$$.appendChild(img$$);
   div$$.appendChild(h5vitality$$);
   div$$.appendChild(h5defense$$);
@@ -131,10 +137,13 @@ function readyToArena(cart) {
   arena$$.classList.add("arena");
   arena$$.appendChild(div$$);
   if (gamePlayer === 1){
+    
     div$$.setAttribute("data-function","player1");
     h5defense$$.setAttribute("data-function","def-p1");
     h5vitality$$.setAttribute("data-function","vit-p1");
+    tirada$$.setAttribute("data-function","tiradaP1");
   }else{
+    tirada$$.setAttribute("data-function","tiradaP2");
     div$$.setAttribute("data-function","player2");
     h5defense$$.setAttribute("data-function","def-p2");
     h5vitality$$.setAttribute("data-function","vit-p2");
@@ -163,7 +172,7 @@ const getScore = (player, numeroDeDados) => {
 
 
 const battle = (btn$$)=>{
-  btn$$.disabled = true; /////////////////////////////////////////////////////boton
+  btn$$.disabled = true; 
   const player1$$ = document.querySelector('[data-function="player1"]');
   const player2$$ = document.querySelector('[data-function="player2"]');
   player1$$.classList.add("bisque");
@@ -182,17 +191,18 @@ const battle = (btn$$)=>{
   }
  
    /// player 1
+   const tiradaP1 = document.querySelector('[data-function="tiradaP1"]');
+   const tiradaP2 = document.querySelector('[data-function="tiradaP2"]');
   
-
   const vitp2$$ = document.querySelector('[data-function="vit-p2"]');
   const vitp1$$ = document.querySelector('[data-function="vit-p1"]');
   const damage1 = player1.damage;
   const totalScore1 = getScore(player1, damage1);
   console.log("puntacion total de player 1 es ", totalScore1);
-//debugger
+
   scoreNeto1 = totalScore1 - player2.defense;
   contVidap2 = contVidap2 - scoreNeto1;
-  
+  tiradaP1.innerHTML='Dados : '+ totalScore1;
   vitp2$$.innerHTML = "VITALITY  : " + contVidap2;
   vitp2$$.classList.add('green');
   
@@ -202,6 +212,7 @@ const battle = (btn$$)=>{
   if (contVidap2<100){
     vitp2$$.classList.add('red');
   } 
+  
     
  
    //player 2
@@ -212,6 +223,7 @@ const battle = (btn$$)=>{
 
   scoreNeto2 = totalScore2 - player1.defense;
   contVidaP1 = contVidaP1 - scoreNeto2;
+  tiradaP2.innerHTML='Dados : '+totalScore2;
   vitp1$$.innerHTML = "VITALITY " + " : " + contVidaP1;
   vitp1$$.classList.add('green');
   
@@ -226,15 +238,18 @@ const battle = (btn$$)=>{
  btn$$.disabled = false;
  marcador$$.innerHTML = "NUEVA RONDA "
  const divFinal$$ = document.createElement('div');
-
- if (contVidaP1 < 0 && contVidaP1 < contVidap2){
+ if (contVidaP1 <= 0 ){
   marcador$$.innerHTML = "Ha vencido el  " + player2.name; 
   marcador$$.classList.add('big');
   divFinal$$.innerHTML = "VIDA RESTANTE : " + contVidap2;
   marcador$$.appendChild(divFinal$$);
   btn$$.style.visibility="hidden";
   endGame(marcador$$)
- }else if (contVidap2 < 0 && contVidap2 < contVidaP1){
+  
+ }
+
+ 
+ if (contVidap2 <= 0 ){
   marcador$$.innerHTML = "Ha vencido el " + player1.name;  
   marcador$$.classList.add('big');
   divFinal$$.innerHTML = "VIDA RESTANTE : " + contVidaP1;
