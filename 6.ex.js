@@ -29,7 +29,7 @@ const random= (max,min)=>{
 };
  */
 
-console.log(carts.characters)
+
 //getCarts();
 
 // pintamos todos los posibles luchadores 
