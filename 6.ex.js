@@ -246,10 +246,7 @@ const battle = (btn$$)=>{
   btn$$.style.visibility="hidden";
   endGame(marcador$$)
   
- }
-
- 
- if (contVidap2 <= 0 ){
+ } else if (contVidap2 <= 0 ){
   marcador$$.innerHTML = "Ha vencido el " + player1.name;  
   marcador$$.classList.add('big');
   divFinal$$.innerHTML = "VIDA RESTANTE : " + contVidaP1;
